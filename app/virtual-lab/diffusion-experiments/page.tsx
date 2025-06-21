@@ -6,8 +6,9 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Progress } from "@/components/ui/progress"
-import { AlertCircle, Play, RotateCcw, Thermometer, Timer, Beaker } from "lucide-react"
+import { AlertCircle, Play, RotateCcw, Thermometer, Timer, Beaker, ArrowLeft } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import Link from "next/link"
 
 export default function DiffusionExperimentsPage() {
   const [currentExperiment, setCurrentExperiment] = useState<string>("perfume")
@@ -81,6 +82,12 @@ export default function DiffusionExperimentsPage() {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="mb-6">
+        <Link href="/virtual-lab">
+          <Button variant="outline" size="sm">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Virtual Lab
+          </Button>
+        </Link>
         <h1 className="text-3xl font-bold mb-2">Diffusion Experiments</h1>
         <p className="text-gray-600">Grade 8 CBC - Particle Theory and Molecular Movement</p>
         <Badge className="mt-2 bg-blue-100 text-blue-800">Interactive Virtual Lab</Badge>

@@ -7,6 +7,8 @@ import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Play, Pause, RotateCcw } from "lucide-react"
+import Link from "next/link"
+import {ArrowLeft} from 'lucide-react'
 
 export default function Cell3DViewerPage() {
   const [solutionConcentration, setSolutionConcentration] = useState(1.0)
@@ -39,6 +41,12 @@ export default function Cell3DViewerPage() {
     <div className="container mx-auto py-6 space-y-6">
       {/* Header */}
       <div className="text-center space-y-2">
+        <Link href="/virtual-lab">
+                      <Button variant="outline" size="sm">
+                        <ArrowLeft className="h-4 w-4 mr-2" />
+                        Back to Virtual Lab
+                      </Button>
+                    </Link>
         <h1 className="text-3xl font-bold">3D Cell Structure Viewer</h1>
         <p className="text-gray-600">
           Interactive 3D visualization of plant cell plasmolysis with real-time rotation and cross-sectional analysis

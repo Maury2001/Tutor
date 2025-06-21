@@ -41,7 +41,7 @@ export default function SignInPage() {
 
     switch (role) {
       case "admin":
-        router.push("/dashboard")
+        router.push("/dash")
         break
       case "teacher":
         router.push("/teacher/dashboard")

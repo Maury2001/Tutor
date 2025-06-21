@@ -46,31 +46,31 @@ import Cir from "../app/comprehensive-cbc-platform/page";
 
 // Define subscription packages directly in this file
 const SUBSCRIPTION_PACKAGES = [
-  {
-    id: "free",
-    name: "Free Starter",
-    tier: "free" as const,
-    price: 0,
-    currency: "USD",
-    billing: "monthly" as const,
-    features: {
-      tokens: '',
-      virtualLabAccess: false,
-      virtualLabExperiments: 0,
-      aiTutorAccess: true,
-      assessmentGenerator: false,
-      progressAnalytics: false,
-      parentReports: false,
-      prioritySupport: false,
-      customBranding: false,
-      apiAccess: false,
-    },
-    limits: {
-      maxStudents: 50,
-      maxTeachers: 5,
-      maxSchools: 1,
-    },
-  },
+  // {
+  //   id: "free",
+  //   name: "Free Starter",
+  //   tier: "free" as const,
+  //   price: 0,
+  //   currency: "USD",
+  //   billing: "monthly" as const,
+  //   features: {
+  //     tokens: '',
+  //     virtualLabAccess: false,
+  //     virtualLabExperiments: 0,
+  //     aiTutorAccess: true,
+  //     assessmentGenerator: false,
+  //     progressAnalytics: false,
+  //     parentReports: false,
+  //     prioritySupport: false,
+  //     customBranding: false,
+  //     apiAccess: false,
+  //   },
+  //   limits: {
+  //     maxStudents: 50,
+  //     maxTeachers: 5,
+  //     maxSchools: 1,
+  //   },
+  // },
   {
     id: "school",
     name: "Personal",
@@ -308,7 +308,7 @@ export default function HomePage() {
                   }}
                 />
                 <div className="hidden">
-                  <div className="h-10 w-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <div className="h-14 w-14 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
                     <span className="text-white font-bold text-lg">T</span>
                   </div>
                 </div>
@@ -498,7 +498,7 @@ export default function HomePage() {
               <div className="text-sm text-muted-foreground">Full Coverage</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-primary">CampBridge</div>
+              <div className="text-2xl font-bold text-primary">American System</div>
               <div className="text-sm text-muted-foreground">Full Coverage</div>
             </div>
             <div>
@@ -533,11 +533,12 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-6 max-w-5xl mx-auto">
             {SUBSCRIPTION_PACKAGES.map((pkg) => (
               <Card
                 key={pkg.id}
-                className={`relative border-2 ${
+                className={`relative border-2 w-[300px] sm:w-[350px] md:w-[400px]
+                  ${
                   pkg.popular
                     ? "border-indigo-500 shadow-lg scale-105"
                     : "border-gray-200"
@@ -681,7 +682,7 @@ export default function HomePage() {
                   }}
                 />
                 <div className="hidden">
-                  <div className="h-10 w-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <div className="h-14 w-14 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center border border-white">
                     <span className="text-white font-bold text-lg">T</span>
                   </div>
                 </div>
