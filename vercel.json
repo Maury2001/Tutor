@@ -1,0 +1,21 @@
+{
+  "functions": {
+    "app/api/**/*.ts": {
+      "maxDuration": 60
+    }
+  },
+  "env": {
+    "OPENAI_API_KEY": "@openai-api-key-new",
+    "GROQ_API_KEY": "@groq-api-key",
+    "POSTGRES_URL": "@postgres-url",
+    "SUPABASE_URL": "@supabase-url",
+    "SUPABASE_ANON_KEY": "@supabase-anon-key",
+    "NEXTAUTH_SECRET": "@nextauth-secret",
+    "NEXTAUTH_URL": "@nextauth-url"
+  },
+  "build": {
+    "env": {
+      "NODE_OPTIONS": "--max-old-space-size=4096"
+    }
+  }
+}
