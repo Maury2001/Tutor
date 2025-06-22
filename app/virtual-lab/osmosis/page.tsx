@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AIGuidancePanel } from "@/components/virtual-lab/ai-guidance-panel"
 import { ScientificNotebook } from "@/components/virtual-lab/scientific-notebook"
 import { Play, Pause, RotateCcw, ArrowRight, ArrowLeft, Beaker, Eye, Target, BookOpen, Lightbulb } from "lucide-react"
+import Link from "next/link"
 
 interface OsmosisExperiment {
   id: string
@@ -302,6 +303,12 @@ export default function OsmosisExperimentPage() {
     <div className="container mx-auto py-6 space-y-6">
       {/* Header */}
       <div className="text-center space-y-2">
+        <Link href="/virtual-lab">
+          <Button variant="outline" size="sm">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Virtual Lab
+          </Button>
+        </Link>
         <h1 className="text-3xl font-bold">Osmosis Virtual Laboratory</h1>
         <p className="text-gray-600">Grade 9 CBC Curriculum - Interactive Osmosis Experiments</p>
         <div className="flex justify-center gap-2">

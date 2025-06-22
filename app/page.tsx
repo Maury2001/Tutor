@@ -43,6 +43,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { link } from "fs";
 import Cir from "../app/comprehensive-cbc-platform/page";
+ // ✅ Valid
+
 
 // Define subscription packages directly in this file
 const SUBSCRIPTION_PACKAGES = [
@@ -90,6 +92,7 @@ const SUBSCRIPTION_PACKAGES = [
       prioritySupport: true,
       customBranding: false,
       apiAccess: false,
+      cbcPathwayGuidance:true,
     },
     limits: {
       maxStudents: 500,
@@ -115,6 +118,7 @@ const SUBSCRIPTION_PACKAGES = [
       prioritySupport: true,
       customBranding: true,
       apiAccess: true,
+      cbcPathwayGuidance:true,
     },
     limits: {
       maxStudents: -1, // Unlimited
@@ -184,7 +188,7 @@ export default function HomePage() {
   const features = [
     {
       icon: Sparkles,
-      link: "/tutor",
+      link: "/tutor/cbc",
       title: "AI-Powered Tutoring",
       description:
         "Get personalized help from our advanced AI tutor trained specifically on the CBC curriculum",
@@ -197,7 +201,7 @@ export default function HomePage() {
     },
     {
       icon: BookOpen,
-      link: "/tutor/cbc",
+      link: "/curriculum",
       title: "Complete CBC Coverage",
       description:
         "Access comprehensive content for all CBC subjects from Grade 1 to Form 4",
@@ -245,6 +249,8 @@ export default function HomePage() {
       benefits: ["Class management", "Student insights", "Curriculum planning"],
     },
   ];
+  
+
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -273,7 +279,7 @@ export default function HomePage() {
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading CBC TutorBot...</p>
+          <p className="text-gray-600">Loading TutorBot...</p>
         </div>
       </div>
     );
@@ -299,6 +305,7 @@ export default function HomePage() {
             <div className="flex items-center space-x-2">
               <div className="relative">
                 <img
+              
                   src="/tutorbot-logo.png"
                   alt="TutorBot AI Logo"
                   className="h-10 w-auto"
@@ -377,7 +384,7 @@ export default function HomePage() {
           <div className="mb-6 sm:mb-8">
             <Badge className="mb-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white border-0 px-3 py-2 sm:px-4 text-xs sm:text-sm">
               <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-              AI-Powered CBC Learning Platform
+              AI-Powered Learning Platform
             </Badge>
           </div>
 
@@ -396,13 +403,13 @@ export default function HomePage() {
           </p>
           {/* Button */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 sm:mb-12 px-4 py-4">
-            <Link href="/auth/signup">
+            <Link href="personal-assessment">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg w-full sm:w-auto"
               >
                 <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                Start Learning Free
+                Take a Personal Assessment
               </Button>
             </Link>
           </div>
@@ -483,6 +490,7 @@ export default function HomePage() {
       </section>
 
       <section className="w-full flex justify-center p-4">
+        
         <div className="mt-10 w-full max-w-6xl px-4">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 justify-center text-center">
             <div>
@@ -498,7 +506,7 @@ export default function HomePage() {
               <div className="text-sm text-muted-foreground">Full Coverage</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-primary">American System</div>
+              <div className="text-2xl font-bold text-primary">American/British Curriculum</div>
               <div className="text-sm text-muted-foreground">Full Coverage</div>
             </div>
             <div>
@@ -577,12 +585,12 @@ export default function HomePage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-3">
-                    <div className="flex items-center">
+                    {/* <div className="flex items-center">
                       <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 mr-3" />
                       <span className="text-sm sm:text-base">
                         {pkg.features.tokens.toLocaleString()} AI tokens
                       </span>
-                    </div>
+                    </div> */}
                     <div className="flex items-center">
                       <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 mr-3" />
                       <span className="text-sm sm:text-base">
@@ -633,6 +641,22 @@ export default function HomePage() {
                         </span>
                       </div>
                     )}
+                     {pkg.features.parentReports && (
+                      <div className="flex items-center">
+                        <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 mr-3" />
+                        <span className="text-sm sm:text-base">
+                          Parent Reports
+                        </span>
+                      </div>
+                    )}
+                     {pkg.features.cbcPathwayGuidance && (
+                      <div className="flex items-center">
+                        <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-500 mr-3" />
+                        <span className="text-sm sm:text-base">
+                          CBC Pathway Guides
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <div className="pt-6">
                     {pkg.tier === "free" ? (
@@ -646,7 +670,7 @@ export default function HomePage() {
                         className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"
                         onClick={() => setContactModal(true)}
                       >
-                        Contact Us
+                        Contact Us for Free Demo
                       </Button>
                     )}
                   </div>
@@ -796,7 +820,7 @@ export default function HomePage() {
         <DialogContent className="sm:max-w-md mx-4">
           <DialogHeader>
             <DialogTitle className="text-lg sm:text-xl">
-              Contact Our Sales Team
+              Contact Our Team
             </DialogTitle>
             <DialogDescription className="text-sm sm:text-base">
               Get in touch with our team to discuss your needs and get a custom

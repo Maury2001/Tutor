@@ -1,9 +1,10 @@
 // Environment configuration with proper validation
+
 export const config = {
   // Database
   database: {
     url: process.env.POSTGRES_URL || process.env.DATABASE_URL || "",
-    prismaUrl: process.env.POSTGRES_PRISMA_URL || "",
+    prismaUrl: process.env.POSTGRES_PRISMA_URL || "postgres://85bfdfd082b18a7cfb2c6a15aba7a27e6191f6c8c4c4fe42ee9f77fdc5d305f8:sk_iGRCzn32yVmUt3TG-jA6I@db.prisma.io:5432/?sslmode=require",
     nonPoolingUrl: process.env.POSTGRES_URL_NON_POOLING || "",
     host: process.env.POSTGRES_HOST || "localhost",
     user: process.env.POSTGRES_USER || "",
@@ -131,6 +132,7 @@ export function validateConfig() {
     isValid: errors.length === 0,
     errors,
   }
+  
 }
 
 export default config

@@ -9,7 +9,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BloodCellAnimation } from "@/components/virtual-lab/blood-cell-animation"
 import { AIGuidancePanel } from "@/components/virtual-lab/ai-guidance-panel"
 import { ScientificNotebook } from "@/components/virtual-lab/scientific-notebook"
-import { Play, Pause, RotateCcw, Beaker, Droplets, Heart, AlertTriangle, BookOpen, Clock } from "lucide-react"
+import { Play, Pause, RotateCcw, Beaker, Droplets, Heart, AlertTriangle, BookOpen, Clock, ArrowLeft } from "lucide-react"
+import Link from "next/link"
 
 interface ExperimentState {
   isRunning: boolean
@@ -128,6 +129,12 @@ export default function BloodCellOsmosisPage() {
     <div className="container mx-auto py-6 space-y-6">
       {/* Header */}
       <div className="text-center space-y-2">
+        <Link href="/virtual-lab">
+          <Button variant="outline" size="sm">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Virtual Lab
+          </Button>
+        </Link>
         <h1 className="text-3xl font-bold flex items-center justify-center gap-2">
           <Heart className="h-8 w-8 text-red-600" />
           Blood Cell Osmosis Laboratory

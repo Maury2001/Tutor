@@ -8,7 +8,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Progress } from "@/components/ui/progress"
 import { AIGuidancePanel } from "@/components/virtual-lab/ai-guidance-panel"
 import { EnhancedDigestiveAnimation } from "@/components/virtual-lab/enhanced-digestive-animation"
-import { Microscope, Eye, BookOpen, Target, CheckCircle, Zap, Leaf, Skull, ArrowRight, RotateCcw } from "lucide-react"
+import { Microscope, Eye, BookOpen, Target, CheckCircle, Zap, Leaf, Skull, ArrowRight, RotateCcw,ArrowLeft } from "lucide-react"
+import Link from "next/link"
 
 interface NutritionMode {
   id: string
@@ -384,6 +385,12 @@ export default function AnimalNutritionDigestionLab() {
 
   return (
     <div className="container mx-auto py-6 px-4">
+      <Link href="/virtual-lab">
+          <Button variant="outline" size="sm">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Virtual Lab
+          </Button>
+        </Link>
       {/* Interactive 3D Digestive System Card */}
       <Card className="mb-8 bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200">
         <CardHeader>

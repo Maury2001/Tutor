@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
@@ -20,7 +21,9 @@ import {
   Info,
   Beaker,
   Zap,
+  ArrowLeft
 } from "lucide-react"
+
 
 interface PhotosynthesisState {
   lightIntensity: number
@@ -197,6 +200,12 @@ export function PhotosynthesisExperiment() {
 
   return (
     <div className="w-full max-w-7xl mx-auto p-4 space-y-6">
+      <Link href="/virtual-lab">
+          <Button variant="outline" size="sm">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Virtual Lab
+          </Button>
+        </Link>
       {/* AI Assistant Panel */}
       <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200">
         <CardHeader>

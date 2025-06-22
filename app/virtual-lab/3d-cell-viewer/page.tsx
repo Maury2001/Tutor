@@ -1,55 +1,56 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Cell3DViewer } from "@/components/virtual-lab/cell-3d-viewer"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Slider } from "@/components/ui/slider"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Play, Pause, RotateCcw } from "lucide-react"
-import Link from "next/link"
-import {ArrowLeft} from 'lucide-react'
+import { useState } from "react";
+import { Cell3DViewer } from "@/components/virtual-lab/cell-3d-viewer";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Slider } from "@/components/ui/slider";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Play, Pause, RotateCcw } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export default function Cell3DViewerPage() {
-  const [solutionConcentration, setSolutionConcentration] = useState(1.0)
-  const [isRunning, setIsRunning] = useState(false)
-  const [timeElapsed, setTimeElapsed] = useState(0)
+  const [solutionConcentration, setSolutionConcentration] = useState(1.0);
+  const [isRunning, setIsRunning] = useState(false);
+  const [timeElapsed, setTimeElapsed] = useState(0);
 
   // Calculate plasmolysis level based on solution concentration
   const calculatePlasmolysisLevel = (concentration: number) => {
     if (concentration > 1.0) {
-      return Math.min(0.8, (concentration - 1.0) * 0.4)
+      return Math.min(0.8, (concentration - 1.0) * 0.4);
     } else if (concentration < 0.5) {
-      return Math.max(-0.2, (concentration - 0.5) * 0.1)
+      return Math.max(-0.2, (concentration - 0.5) * 0.1);
     }
-    return 0
-  }
+    return 0;
+  };
 
   const getSolutionType = (concentration: number) => {
-    if (concentration < 0.5) return "Hypotonic"
-    if (concentration <= 1.5) return "Isotonic"
-    return "Hypertonic"
-  }
+    if (concentration < 0.5) return "Hypotonic";
+    if (concentration <= 1.5) return "Isotonic";
+    return "Hypertonic";
+  };
 
   const resetExperiment = () => {
-    setSolutionConcentration(1.0)
-    setTimeElapsed(0)
-    setIsRunning(false)
-  }
+    setSolutionConcentration(1.0);
+    setTimeElapsed(0);
+    setIsRunning(false);
+  };
 
   return (
     <div className="container mx-auto py-6 space-y-6">
       {/* Header */}
       <div className="text-center space-y-2">
         <Link href="/virtual-lab">
-                      <Button variant="outline" size="sm">
-                        <ArrowLeft className="h-4 w-4 mr-2" />
-                        Back to Virtual Lab
-                      </Button>
-                    </Link>
+          <Button variant="outline" size="sm">
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Virtual Lab
+          </Button>
+        </Link>
         <h1 className="text-3xl font-bold">3D Cell Structure Viewer</h1>
         <p className="text-gray-600">
-          Interactive 3D visualization of plant cell plasmolysis with real-time rotation and cross-sectional analysis
+          Interactive 3D visualization of plant cell plasmolysis with real-time
+          rotation and cross-sectional analysis
         </p>
       </div>
 
@@ -70,7 +71,11 @@ export default function Cell3DViewerPage() {
               variant={isRunning ? "destructive" : "default"}
               className="flex items-center gap-2"
             >
-              {isRunning ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+              {isRunning ? (
+                <Pause className="h-4 w-4" />
+              ) : (
+                <Play className="h-4 w-4" />
+              )}
               {isRunning ? "Pause" : "Start"} Experiment
             </Button>
             <Button onClick={resetExperiment} variant="outline">
@@ -78,13 +83,18 @@ export default function Cell3DViewerPage() {
               Reset
             </Button>
             <div className="text-sm text-gray-600">
-              Plasmolysis Level: {(calculatePlasmolysisLevel(solutionConcentration) * 100).toFixed(1)}%
+              Plasmolysis Level:{" "}
+              {(calculatePlasmolysisLevel(solutionConcentration) * 100).toFixed(
+                1
+              )}
+              %
             </div>
           </div>
 
           <div className="space-y-2">
             <label className="text-sm font-medium">
-              Solution Concentration: {solutionConcentration.toFixed(1)}% Sucrose
+              Solution Concentration: {solutionConcentration.toFixed(1)}%
+              Sucrose
             </label>
             <Slider
               value={[solutionConcentration]}
@@ -120,11 +130,16 @@ export default function Cell3DViewerPage() {
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
                 <span className="text-green-600">•</span>
-                <span>Better understanding of spatial relationships between cell components</span>
+                <span>
+                  Better understanding of spatial relationships between cell
+                  components
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-green-600">•</span>
-                <span>Interactive rotation reveals hidden structural details</span>
+                <span>
+                  Interactive rotation reveals hidden structural details
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-green-600">•</span>
@@ -176,5 +191,5 @@ export default function Cell3DViewerPage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

@@ -163,17 +163,17 @@ export default function DashboardPage() {
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome back, {user.name}!</h2>
-          <p className="text-gray-600">
+          {/* <p className="text-gray-600">
             {user.role === "admin" && "Manage the CBC TutorBot system and monitor all activities."}
             {user.role === "teacher" && "Access AI-powered tools to enhance your teaching experience."}
             {user.role === "school" && `Manage ${user.schoolName || "your school"} and track performance.`}
             {user.role === "student" &&
               `Continue your Grade ${user.gradeLevel?.replace("grade", "").replace("pp", "PP") || "5"} CBC learning journey.`}
-          </p>
+          </p> */}
         </div>
 
         {/* Admin Dashboard - All Available Actions */}
-        {user.role === "admin" && (
+        {/* {user.role === "admin" && ( */}
           <div className="mb-8">
             <Card>
               <CardHeader>
@@ -489,10 +489,10 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           </div>
-        )}
+        // )}
 
         {/* Regular Quick Actions Grid for Non-Admin Users */}
-        {user.role !== "admin" && (
+        {/* {user.role !== "admin" && ( */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {getQuickActions().map((action, index) => (
               <div key={index} className="group">
@@ -531,7 +531,7 @@ export default function DashboardPage() {
               </div>
             ))}
           </div>
-        )}
+        {/* )} */}
 
         {/* Enhanced Stats Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -650,7 +650,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Role-specific additional content */}
-        {user.role === "student" && (
+        {/* {user.role === "student" && (
           <div className="mt-8">
             <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
               <CardHeader>
@@ -680,7 +680,7 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   )

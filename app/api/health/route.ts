@@ -1,12 +1,12 @@
-import type { NextRequest } from "next/server"
-import { handleApiError, createApiResponse } from "@/lib/utils/error-handler"
-import { config, validateConfig } from "@/lib/config/environment"
-import { dbConnection } from "@/lib/db/connection"
+import type { NextRequest } from "next/server";
+import { handleApiError, createApiResponse } from "@/lib/utils/error-handler";
+import { config, validateConfig } from "@/lib/config/environment";
+import { dbConnection } from "@/lib/db/connection";
 
 export async function GET(request: NextRequest) {
   try {
-    const configValidation = validateConfig()
-    const dbConnectionTest = await dbConnection.testConnection()
+    const configValidation = validateConfig();
+    const dbConnectionTest = await dbConnection.testConnection();
 
     const healthData = {
       status: "ok",
@@ -41,10 +41,11 @@ export async function GET(request: NextRequest) {
         valid: configValidation.isValid,
         errors: configValidation.errors,
       },
-    }
-
-    return createApiResponse(healthData)
+    };
+    console.log("🔍 OPENAI_API_KEY:", process.env.OPENAI_API_KEY);
+    console.log("🔍 config.ai.openai.apiKey:", config.ai.openai.apiKey);
+    return createApiResponse(healthData);
   } catch (error) {
-    return handleApiError(error)
+    return handleApiError(error);
   }
 }

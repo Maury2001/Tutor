@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server"
+import { createClient } from "@supabase/supabase-js"
+
 
 export async function GET() {
   try {
@@ -12,7 +14,6 @@ export async function GET() {
     }
 
     // Import Supabase client
-    const { createClient } = await import("@supabase/supabase-js")
 
     const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
 

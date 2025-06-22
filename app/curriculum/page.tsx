@@ -97,7 +97,7 @@ export default function CurriculumPage() {
     },
   ]
 
-  const grades = ["PP1", "PP2", "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6"]
+  const grades = ["PP1", "PP2", "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6","Grade 7","Grade 8", "Grade 9", "Grade 10", "Grade 11", "Grade 12"]
 
   const filteredSubjects = subjects.filter(
     (subject) =>
@@ -124,9 +124,9 @@ export default function CurriculumPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center space-x-4">
-            <Button variant="outline" onClick={() => router.push("/dashboard")}>
+            <Button variant="outline" onClick={() => router.back()}>
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
+              Back
             </Button>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">CBC Curriculum</h1>
