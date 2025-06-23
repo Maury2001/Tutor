@@ -361,7 +361,7 @@ export default function HomePage() {
                   </Link>
                   <Link href="/auth/signup">
                     <Button
-                      size="md"
+                     
                       className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-base p-4 sm:text-sm"
                     >
                       Get Started
@@ -403,7 +403,7 @@ export default function HomePage() {
           </p>
           {/* Button */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 sm:mb-12 px-4 py-4">
-            <Link href="personal-assessment">
+            <Link href="assessment">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg w-full sm:w-auto"
@@ -505,10 +505,10 @@ export default function HomePage() {
               <div className="text-2xl font-bold text-primary">8-4-4</div>
               <div className="text-sm text-muted-foreground">Full Coverage</div>
             </div>
-            <div>
+            {/* <div>
               <div className="text-2xl font-bold text-primary">American/British Curriculum</div>
               <div className="text-sm text-muted-foreground">Full Coverage</div>
-            </div>
+            </div> */}
             <div>
               <div className="text-2xl font-bold text-primary">7+</div>
               <div className="text-sm text-muted-foreground">
@@ -561,9 +561,9 @@ export default function HomePage() {
                 )}
                 <CardHeader className="text-center pb-6 sm:pb-8">
                   <div className="mb-4">
-                    {pkg.tier === "free" && (
+                    {/* {pkg.tier === "free" && (
                       <Gift className="h-10 w-10 sm:h-12 sm:w-12 mx-auto text-gray-500" />
-                    )}
+                    )} */}
                     {pkg.tier === "school" && (
                       <Users className="h-10 w-10 sm:h-12 sm:w-12 mx-auto text-indigo-500" />
                     )}
@@ -659,20 +659,20 @@ export default function HomePage() {
                     )}
                   </div>
                   <div className="pt-6">
-                    {pkg.tier === "free" ? (
+                    {/* {pkg.tier === "free" ? (
                       <Link href="/auth/signup">
                         <Button className="w-full" variant="outline">
                           Get Started Free
                         </Button>
                       </Link>
-                    ) : (
+                    ) : ( */}
                       <Button
                         className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"
                         onClick={() => setContactModal(true)}
                       >
                         Contact Us for Free Demo
                       </Button>
-                    )}
+                    {/* )} */}
                   </div>
                 </CardContent>
               </Card>

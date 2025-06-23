@@ -90,6 +90,45 @@ export type Database = {
         }
         Relationships: []
       }
+      ai_model_monitoring: {
+        Row: {
+          accuracy_score: number | null
+          created_at: string | null
+          id: string
+          last_trained_at: string | null
+          model_name: string
+          model_version: string | null
+          performance_metrics: Json | null
+          status: string | null
+          training_data_count: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          accuracy_score?: number | null
+          created_at?: string | null
+          id?: string
+          last_trained_at?: string | null
+          model_name: string
+          model_version?: string | null
+          performance_metrics?: Json | null
+          status?: string | null
+          training_data_count?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          accuracy_score?: number | null
+          created_at?: string | null
+          id?: string
+          last_trained_at?: string | null
+          model_name?: string
+          model_version?: string | null
+          performance_metrics?: Json | null
+          status?: string | null
+          training_data_count?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       ai_provider_config: {
         Row: {
           config: Json
@@ -167,6 +206,57 @@ export type Database = {
           },
         ]
       }
+      ai_training_materials: {
+        Row: {
+          approved_by: string | null
+          content: string
+          created_at: string | null
+          description: string | null
+          file_url: string | null
+          grade_level: string | null
+          id: string
+          keywords: string[] | null
+          material_type: string
+          status: string | null
+          subject_area: string | null
+          title: string
+          updated_at: string | null
+          uploaded_by: string | null
+        }
+        Insert: {
+          approved_by?: string | null
+          content: string
+          created_at?: string | null
+          description?: string | null
+          file_url?: string | null
+          grade_level?: string | null
+          id?: string
+          keywords?: string[] | null
+          material_type: string
+          status?: string | null
+          subject_area?: string | null
+          title: string
+          updated_at?: string | null
+          uploaded_by?: string | null
+        }
+        Update: {
+          approved_by?: string | null
+          content?: string
+          created_at?: string | null
+          description?: string | null
+          file_url?: string | null
+          grade_level?: string | null
+          id?: string
+          keywords?: string[] | null
+          material_type?: string
+          status?: string | null
+          subject_area?: string | null
+          title?: string
+          updated_at?: string | null
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
       ai_usage_logs: {
         Row: {
           cost: number | null
@@ -208,6 +298,200 @@ export type Database = {
           user_id?: string | null
         }
         Relationships: []
+      }
+      app_user_sessions: {
+        Row: {
+          created_at: string | null
+          expires_at: string
+          id: string
+          session_token: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          expires_at: string
+          id?: string
+          session_token: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          expires_at?: string
+          id?: string
+          session_token?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "app_user_sessions_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "app_users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      app_users: {
+        Row: {
+          county_id: number | null
+          created_at: string | null
+          email: string
+          full_name: string
+          grade_level: string | null
+          id: string
+          is_active: boolean | null
+          is_verified: boolean | null
+          last_login: string | null
+          parent_id: string | null
+          password_hash: string
+          phone: string | null
+          school_id: string | null
+          updated_at: string | null
+          user_type: Database["public"]["Enums"]["user_type"]
+          username: string
+        }
+        Insert: {
+          county_id?: number | null
+          created_at?: string | null
+          email: string
+          full_name: string
+          grade_level?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_verified?: boolean | null
+          last_login?: string | null
+          parent_id?: string | null
+          password_hash: string
+          phone?: string | null
+          school_id?: string | null
+          updated_at?: string | null
+          user_type: Database["public"]["Enums"]["user_type"]
+          username: string
+        }
+        Update: {
+          county_id?: number | null
+          created_at?: string | null
+          email?: string
+          full_name?: string
+          grade_level?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_verified?: boolean | null
+          last_login?: string | null
+          parent_id?: string | null
+          password_hash?: string
+          phone?: string | null
+          school_id?: string | null
+          updated_at?: string | null
+          user_type?: Database["public"]["Enums"]["user_type"]
+          username?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "app_users_county_id_fkey"
+            columns: ["county_id"]
+            isOneToOne: false
+            referencedRelation: "counties"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "app_users_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "app_users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "app_users_school_id_fkey"
+            columns: ["school_id"]
+            isOneToOne: false
+            referencedRelation: "schools"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assessment_progress: {
+        Row: {
+          assessment_type: string
+          created_at: string | null
+          current_step: number
+          id: string
+          is_completed: boolean | null
+          responses: Json | null
+          session_id: string
+          time_spent: number | null
+          total_steps: number
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          assessment_type: string
+          created_at?: string | null
+          current_step?: number
+          id?: string
+          is_completed?: boolean | null
+          responses?: Json | null
+          session_id: string
+          time_spent?: number | null
+          total_steps: number
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          assessment_type?: string
+          created_at?: string | null
+          current_step?: number
+          id?: string
+          is_completed?: boolean | null
+          responses?: Json | null
+          session_id?: string
+          time_spent?: number | null
+          total_steps?: number
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      assessment_results: {
+        Row: {
+          assessment_type: string
+          completed_at: string | null
+          created_at: string | null
+          id: string
+          pathway_suggestions: Json | null
+          recommendations: Json | null
+          scores: Json
+          user_id: string | null
+        }
+        Insert: {
+          assessment_type: string
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          pathway_suggestions?: Json | null
+          recommendations?: Json | null
+          scores: Json
+          user_id?: string | null
+        }
+        Update: {
+          assessment_type?: string
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          pathway_suggestions?: Json | null
+          recommendations?: Json | null
+          scores?: Json
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_results_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "app_users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       audit_logs: {
         Row: {
@@ -284,6 +568,65 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      career_materials: {
+        Row: {
+          category: string | null
+          content: string | null
+          created_at: string | null
+          created_by: string | null
+          description: string | null
+          file_url: string | null
+          grade_levels: string[] | null
+          id: string
+          is_published: boolean | null
+          material_type: string
+          thumbnail_url: string | null
+          title: string
+          updated_at: string | null
+          views_count: number | null
+        }
+        Insert: {
+          category?: string | null
+          content?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          file_url?: string | null
+          grade_levels?: string[] | null
+          id?: string
+          is_published?: boolean | null
+          material_type: string
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string | null
+          views_count?: number | null
+        }
+        Update: {
+          category?: string | null
+          content?: string | null
+          created_at?: string | null
+          created_by?: string | null
+          description?: string | null
+          file_url?: string | null
+          grade_levels?: string[] | null
+          id?: string
+          is_published?: boolean | null
+          material_type?: string
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string | null
+          views_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "career_materials_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "app_users"
             referencedColumns: ["id"]
           },
         ]
@@ -383,6 +726,27 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      counties: {
+        Row: {
+          code: string
+          created_at: string | null
+          id: number
+          name: string
+        }
+        Insert: {
+          code: string
+          created_at?: string | null
+          id?: number
+          name: string
+        }
+        Update: {
+          code?: string
+          created_at?: string | null
+          id?: number
+          name?: string
+        }
+        Relationships: []
       }
       courses: {
         Row: {
@@ -630,6 +994,48 @@ export type Database = {
           },
         ]
       }
+      questionnaire_questions: {
+        Row: {
+          category: string
+          created_at: string | null
+          created_by: string | null
+          difficulty_level: number | null
+          id: string
+          is_active: boolean | null
+          options: Json | null
+          question_text: string
+          question_type: string
+          subcategory: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          created_by?: string | null
+          difficulty_level?: number | null
+          id?: string
+          is_active?: boolean | null
+          options?: Json | null
+          question_text: string
+          question_type: string
+          subcategory?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          created_by?: string | null
+          difficulty_level?: number | null
+          id?: string
+          is_active?: boolean | null
+          options?: Json | null
+          question_text?: string
+          question_type?: string
+          subcategory?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       quizzes: {
         Row: {
           correct_answer: string
@@ -717,6 +1123,167 @@ export type Database = {
           description?: string | null
           id?: number
           name?: Database["public"]["Enums"]["user_role_type"]
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      schools: {
+        Row: {
+          county_id: number | null
+          created_at: string | null
+          email: string | null
+          id: string
+          is_active: boolean | null
+          max_students: number | null
+          name: string
+          phone: string | null
+          principal_name: string | null
+          registration_number: string | null
+          school_type: string | null
+          sub_county: string | null
+          subscription_end_date: string | null
+          subscription_start_date: string | null
+          subscription_status:
+            | Database["public"]["Enums"]["subscription_status"]
+            | null
+          updated_at: string | null
+          ward: string | null
+        }
+        Insert: {
+          county_id?: number | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_students?: number | null
+          name: string
+          phone?: string | null
+          principal_name?: string | null
+          registration_number?: string | null
+          school_type?: string | null
+          sub_county?: string | null
+          subscription_end_date?: string | null
+          subscription_start_date?: string | null
+          subscription_status?:
+            | Database["public"]["Enums"]["subscription_status"]
+            | null
+          updated_at?: string | null
+          ward?: string | null
+        }
+        Update: {
+          county_id?: number | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          is_active?: boolean | null
+          max_students?: number | null
+          name?: string
+          phone?: string | null
+          principal_name?: string | null
+          registration_number?: string | null
+          school_type?: string | null
+          sub_county?: string | null
+          subscription_end_date?: string | null
+          subscription_start_date?: string | null
+          subscription_status?:
+            | Database["public"]["Enums"]["subscription_status"]
+            | null
+          updated_at?: string | null
+          ward?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "schools_county_id_fkey"
+            columns: ["county_id"]
+            isOneToOne: false
+            referencedRelation: "counties"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      student_performance_reports: {
+        Row: {
+          academic_year: string
+          areas_for_improvement: string[] | null
+          generated_at: string | null
+          grade: string | null
+          id: string
+          overall_average: number | null
+          position: number | null
+          strengths: string[] | null
+          student_id: string
+          teacher_comments: string | null
+          term: number
+          total_students: number | null
+        }
+        Insert: {
+          academic_year: string
+          areas_for_improvement?: string[] | null
+          generated_at?: string | null
+          grade?: string | null
+          id?: string
+          overall_average?: number | null
+          position?: number | null
+          strengths?: string[] | null
+          student_id: string
+          teacher_comments?: string | null
+          term: number
+          total_students?: number | null
+        }
+        Update: {
+          academic_year?: string
+          areas_for_improvement?: string[] | null
+          generated_at?: string | null
+          grade?: string | null
+          id?: string
+          overall_average?: number | null
+          position?: number | null
+          strengths?: string[] | null
+          student_id?: string
+          teacher_comments?: string | null
+          term?: number
+          total_students?: number | null
+        }
+        Relationships: []
+      }
+      termly_marks: {
+        Row: {
+          academic_year: string
+          created_at: string | null
+          grade: string | null
+          id: string
+          marks: number
+          remarks: string | null
+          student_id: string
+          subject_area: string
+          teacher_id: string
+          term: number
+          updated_at: string | null
+        }
+        Insert: {
+          academic_year: string
+          created_at?: string | null
+          grade?: string | null
+          id?: string
+          marks: number
+          remarks?: string | null
+          student_id: string
+          subject_area: string
+          teacher_id: string
+          term: number
+          updated_at?: string | null
+        }
+        Update: {
+          academic_year?: string
+          created_at?: string | null
+          grade?: string | null
+          id?: string
+          marks?: number
+          remarks?: string | null
+          student_id?: string
+          subject_area?: string
+          teacher_id?: string
+          term?: number
           updated_at?: string | null
         }
         Relationships: []
@@ -1048,13 +1615,31 @@ export type Database = {
         }
         Returns: Json
       }
+      calculate_student_performance: {
+        Args: { p_student_id: string; p_term: number; p_academic_year: string }
+        Returns: undefined
+      }
+      generate_username: {
+        Args: {
+          full_name: string
+          user_type: Database["public"]["Enums"]["user_type"]
+        }
+        Returns: string
+      }
       rollback_ai_config_template: {
         Args: { application_id_param: number; rolled_back_by_param: string }
         Returns: Json
       }
     }
     Enums: {
+      subscription_status: "active" | "inactive" | "suspended" | "trial"
       user_role_type: "admin" | "student" | "teacher"
+      user_type:
+        | "student"
+        | "teacher"
+        | "parent"
+        | "school_admin"
+        | "system_admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1170,7 +1755,15 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      subscription_status: ["active", "inactive", "suspended", "trial"],
       user_role_type: ["admin", "student", "teacher"],
+      user_type: [
+        "student",
+        "teacher",
+        "parent",
+        "school_admin",
+        "system_admin",
+      ],
     },
   },
 } as const
